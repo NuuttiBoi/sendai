@@ -3,6 +3,8 @@ import axios from "axios";
 import {nanoid} from "nanoid";
 import './App.css';
 import work_types_service from "./services/work_types_service";
+import AddNewForm from "./components/addNewWork";
+import addNewWork from "./components/addNewWork";
 function App () {
 
     const API_HOST = "http://localhost:3001";
@@ -77,6 +79,29 @@ function App () {
 
 
     const updateInventory = ({id, newWork3Name, newWork1Name, newWork2Name}) => {
+        axios.post(`http://localhost:3001/work_types/getWorkType/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                work3_name: newWork3Name,
+                work1_name: newWork1Name,
+                work2_name: newWork2Name
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                onCancel();
+                fetchInventory();
+            })
+    }
+
+
+
+
+    /*
+    const updateInventory = ({id, newWork3Name, newWork1Name, newWork2Name}) => {
         fetch(`${INVENTORY_API_URL}/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
@@ -94,6 +119,8 @@ function App () {
                 fetchInventory();
             })
     }
+
+     */
 
     const addInventory = ({id, newWork3Name, newWork1Name, newWork2Name}) => {
         fetch(`${INVENTORY_API_URL}`, {
@@ -140,6 +167,66 @@ function App () {
         setData(newRows);
     }
 
+    const handeAddFormSubmit = (event) => {
+        event.preventDefault();
+        /*
+        setWork1Name(event.target.value);
+        setWork2Name(event.target.value);
+        setWork3Name(event.target.value);
+
+         */
+
+        /*
+            axios.post("api/addwork", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    work1_name: 'homo',
+                    work2_name: 'paska',
+                    work3_name: 'vittu'
+                })
+            })
+
+         */
+        const workkii = {
+            work1_name: "neekeri",
+            work2_name: "turpa",
+            work3_name: "kiinni"
+        }
+
+        work_types_service.createNew(workkii)
+            .then(response => {
+                console.log("success", response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+
+        axios.post('http://localhost:3001/work_types', {
+                work1_name: 'homo',
+                work2_name: 'paska',
+                work3_name: 'vittu'
+        })
+                .then(res => {
+                    console.log("response: ", res);
+                })
+                .catch(err => {
+                    console.log("error:", err);
+                });
+        };
+
+
+    const openForm = (event) => {
+        event.preventDefault()
+        document.getElementById('addNewForm').classList.remove('visuallyhidden')
+        document.querySelector('body').classList.add('locked')
+        console.log('open form')
+    }
+    const updatePage = (newRestaurant) => {
+        console.log(newRestaurant)
+        setData(data.concat(addNewWork))
+    }
 
     return (
         <div className="container">
@@ -190,7 +277,7 @@ function App () {
                                     )
                                 }
                             </td>
-                            <td>
+                            <td className={"edit"}>
                                 {
                                     inEditMode.status && inEditMode.rowKey === item.id ? (
                                         <React.Fragment>
@@ -241,6 +328,23 @@ function App () {
                 }
                 </tbody>
             </table>
+
+
+
+
+            <h2>Add a row</h2>
+            <button id="addReviewMobile" onClick={openForm} className="button mobileOnly">+</button>
+
+            <form onSubmit={handeAddFormSubmit}>
+                <input type="text" name="product_name"/>
+                <input type="text" name="product_category"/>
+                <input type="text" name="unit_price"/>
+                <button type="submit" onSubmit={handeAddFormSubmit}>Add</button>
+                <button type="submit" onSubmit={onDelete}>Delete</button>
+            </form>
+            <AddNewForm update={updatePage}/>
+
+
 
 
         </div>

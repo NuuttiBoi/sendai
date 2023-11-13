@@ -11,6 +11,7 @@
 
 h1{
   text-align: center;
+  font-family: 'Rubik', sans-serif;
 }
 
 .App-logo {
@@ -65,9 +66,11 @@ td {
 th {
   background-color: rgb(117, 201, 250);
 }
-
 td {
-  background-color: #F1FAEE;
+  background-color: linen;
+}
+.edit {
+  background-color: white;
 }
 
 form {
@@ -82,4 +85,672 @@ form td:last-child {
 
 form * {
   font-size: 28px;
+}
+
+/* Mobiilimenu */
+@media (max-width: 62em) {
+  .mobileMenu {
+    display: inline-block;
+  }
+
+  .nav-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-header {
+    width: 100%;
+  }
+
+  .main-nav ul {
+    width: 100%;
+    flex-direction: column;
+    padding: 1rem 0;
+    align-items: flex-start;
+  } /* Menulinkit tyyliltään samanlaisiksi */
+
+  /* Ei vaikutusta suuremmilla näytöillä */
+  .hideOnMobile {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+}
+
+
+
+
+
+
+img, svg {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Kaikki buttonit */
+button {
+  line-height: 0; /* keskittää tekstin pystysuunnassa */
+  border: 0;
+  cursor: pointer;
+}
+
+.container {
+  flex-grow: 1;
+  padding: 2rem;
+  position: relative;
+  width: min(100%, 70em);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 5em;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+/* Grid, jossa ravintolaboksit */
+.restaurantList {
+  display: grid;
+  gap: 2rem;
+  list-style-type: none;
+}
+
+.restaurantArticle h2 {
+  margin-bottom: 0;
+}
+
+.article-img {
+  display: block;
+  margin: 0 auto;
+  max-height: 16rem;
+}
+
+.pin-icon svg {
+  max-width: 100%;
+}
+
+/* Pienessä tilassa numero siirtyy tarvittaessa tekstin alle */
+.articleButton span {
+  display: inline-block;
+}
+
+.main-layout h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  font-style: normal;
+  margin-bottom: .5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Lomake mobiilissa */
+.addNewForm {
+  height: 100vh;
+  width: 100vw;
+  border-radius: 0;
+  overflow-y: scroll;
+  display: grid;
+  grid-auto-rows: auto auto 1fr auto;
+}
+
+.addNewForm form {
+  display: grid;
+  gap: 1rem;
+}
+
+.formFields section {
+  display: grid;
+  gap: .75rem;
+}
+
+.formFields {
+  display: grid;
+  gap: 2rem;
+  padding: .15em;
+}
+
+.addNewForm form div div:not(.formCheckboxContainer) {
+  display: flex;
+  align-items: flex-start;
+}
+
+form label:not(.formCheckboxContainer label) {
+  width: 6rem;
+  flex-grow: 0;
+  font-weight: bold;
+}
+
+.addNewForm h2 {
+  margin-bottom: 0;
+}
+
+.addNewForm textarea {
+  margin-left: .5rem;
+}
+
+.required p::after {
+  content: '*';
+}
+
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.formContainer:last-child {
+  align-self: flex-end;
+}
+
+
+input[type="checkbox"]:focus, input[type="checkbox"].selected {
+  outline: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+.formCheckboxContainer {
+  columns: 2;
+  gap: 0;
+}
+
+.checkbox {
+  margin-bottom: .25rem;
+}
+
+.formCheckboxContainer span {
+  margin-left: .5rem;
+}
+
+.searchContainer {
+  display: grid;
+}
+
+/* Hakukenttä */
+.searchBar {
+  width: 25em;
+  display: flex;
+  flex-direction: row;
+  gap: .25rem;
+  align-items: center;
+}
+
+
+
+.filterIcon svg {
+  height: 100%;
+  width: 100%;
+}
+
+.sliderContainer {
+  display: flex;
+  flex-basis: 100%;
+  gap: 3rem;
+}
+
+.sliderWrapper {
+  width: 100%;
+  display: flex;
+  gap: .75rem;
+  margin: auto;
+}
+
+.sliderContainer label {
+  min-width: 20%;
+}
+
+
+.slider:focus {
+  outline: none;
+}
+
+/* Estää scrollauksen popupin ollessa auki */
+.locked {
+  overflow-y: hidden;
+}
+
+.unclickable {
+  opacity: .5;
+  pointer-events: none;
+}
+
+/* Estää buttonien klikkauksen  */
+.locked button:not(.popup button),
+.locked a:not(.popup button),
+.locked .navlink:not(.popup button),
+.locked .footerlink:not(.popup button) {
+  pointer-events: none;
+}
+
+/* Thumbs up-nappien container*/
+.thumbsUpButtons {
+  display: flex;
+  gap: .5rem;
+}
+
+.thumbsUp > *, .thumbsDown > * {
+  display: inline-block;
+}
+
+.thumbsDown .icon-container {
+  rotate: 180deg;
+  padding-bottom: .2rem;
+}
+
+/* Kommenttikenttä */
+.commentForm {
+  display: grid;
+  gap: .5rem;
+  max-width: 40em;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+.commentForm label {
+  grid-row: 2;
+}
+
+.commentForm textarea {
+  grid-row: 1;
+}
+
+.commentForm button {
+  max-width: 10rem;
+}
+
+.commentIcon {
+  padding: .1em;
+  position: relative;
+}
+
+.comment__info {
+  max-width: 50%;
+  display: inline-block;
+}
+
+.comment__buttons {
+  max-width: calc(50% - .5rem);
+  position: absolute;
+  right: .5rem;
+  bottom: .5rem;
+  display: flex;
+  gap: .25rem
+}
+
+.comment__info > * {
+  line-height: 1.5;
+}
+
+/* Arvostelusivujen tagit (ei klikattavia) */
+.unclickableTags {
+  width: fit-content;
+  pointer-events: none;
+}
+
+.tag label {
+  cursor: pointer;
+}
+
+.tag label input {
+  display: none;
+}
+
+/* Kommenttiboksi */
+.commentsContainer {
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 40em; /* ? */
+}
+
+
+.scoreBox > * {
+  display: inline-block;
+}
+
+.themeButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: .6rem;
+  min-height: 1.5rem;
+}
+
+.themeButton {
+  display: block;
+  position: relative;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.themeButton input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.themeButton .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 100vmax;
+  border: 1px solid #fff;
+}
+
+.themeButton input:checked ~ .checkmark {
+  box-shadow: 0 0 0 .15rem #fff;
+}
+
+/* Piilottaa elementin näkyvistä */
+.visuallyhidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.hide-border button {
+  border: none;
+}
+
+
+  .formFields {
+    overflow-y: scroll;
+    max-height: 28rem;
+    padding-right: 1rem;
+  }
+
+
+@media only screen and (min-width: 62em) {
+  .searchContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .searchBar {
+    grid-column: 2 / 4;
+    grid-row: 1;
+  }
+
+  #addReviewMobile {
+    position: absolute;
+    top: -100%;
+  }
+
+  #addReview {
+    grid-column: 4;
+    margin-right: 0;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .restaurantList {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .restaurantArticle {
+    max-width: none;
+  }
+
+  .searchBar {
+    width: 30em;
+  }
+
+  .commentForm {
+    grid-template-columns: auto 1fr;
+    gap: 1rem .5rem;
+  }
+
+  .commentForm label {
+    grid-row: 1;
+    grid-column: 1;
+    text-align: right;
+  }
+
+  .commentForm textarea {
+    grid-row: 1;
+    grid-column: 2;
+    max-width: none;
+  }
+
+  .commentForm button {
+    grid-column: 2;
+  }
+
+  .tagContainer {
+    justify-content: flex-start;
+  }
+
+  .commentsContainer {
+    max-width: 90%;
+    gap: 0;
+  }
+
+  .commentItem, .darkTheme .commentItem {
+    background-color: transparent;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    width: 70%;
+    gap: .5rem;
+  }
+
+  .comment__buttons {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .commentItem:nth-child(even) {
+    flex-direction: row;
+    justify-self: flex-end;
+  }
+
+  .commentItem:nth-child(even) .comment__buttons {
+    bottom: 1rem;
+    right: 11.3rem;
+    color: red;
+  }
+
+  .main-nav {
+    position: relative;
+    padding: 1.5rem 3rem;
+    align-items: center;
+  }
+
+
+  .navlink.loginButton.loggedIn:hover, .darkTheme .navlink.loginButton.loggedIn:hover {
+    text-decoration: underline;
+    background-color: transparent;
+  }
+
+  .nav-wrapper ul li:first-child {
+    margin-right: .5rem;
+  }
+
+  .container {
+    margin-top: 0;
+  }
+
+  .mobileOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media only screen and (min-width: 80em) {
+  .container {
+    padding: 2rem 0;
+  }
+
+  .restaurantList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* Kirjauttuminen ja rekistöröityminen*/
+.loginButton {
+  display: flex;
+  align-items: center;
+}
+
+.userIcon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 5px;
+}
+
+.loginFields {
+  justify-content: center;
+  margin: 5px;
+}
+
+.userBtn {
+  background-color: #ccc;
+  line-height: 2;
+  width: 200px;
+  margin-top: 1vh;
+}
+
+.loginFormCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#addNewLogin button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#addNewLogin #submitBtn {
+  margin-top: 3vh;
+}
+
+#addNewLogin {
+  height: 45vh;
+  width: 100%;
+  padding: 2rem;
+}
+
+.usernameInput input {
+  margin-left: 1vh;
+  margin-bottom: 1vh;
+}
+
+.passwordInput input {
+  margin-left: 4.4vh;
+  margin-top: 1vh;
+}
+
+#addNewUser {
+  height: 45vh;
+}
+
+.userFormCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.userFormCont input {
+  margin-left: 5vh;
+
+}
+
+.userFormCont label {
+  float: left;
+  display: block;
+  margin-right: 2vh;
+}
+
+/* Profiili */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.avatar-container {
+  margin-right: 2rem;
+}
+
+.userDefaultAvatar {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoutIcon {
+  width: 2rem;
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 5px;
+}
+
+.logoutBtn span {
+  margin-left: 5px;
+
+}
+
+.logoutBtn:hover{
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
 }

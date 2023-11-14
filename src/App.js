@@ -78,7 +78,34 @@ function App () {
  */
 
 
-    const updateInventory = ({id, newWork3Name, newWork1Name, newWork2Name}) => {
+    const updateInventory = ({id, newWork1Name, newWork2Name, newWork3Name}) => {
+
+        work_types_service.getWorkType(id)
+            .then(response => {
+                console.log("tan pit'is vittu toimii", response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+
+        const newType = {
+            work1_name : newWork1Name,
+            work2_name : newWork2Name,
+            work3_name : newWork3Name
+        }
+
+        work_types_service.update(id, newType)
+            .then(response => response.json())
+            .then(json => {
+                onCancel();
+                fetchInventory();
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+        /*
         axios.post(`http://localhost:3001/work_types/getWorkType/${id}`, {
             method: "PATCH",
             body: JSON.stringify({
@@ -95,6 +122,8 @@ function App () {
                 onCancel();
                 fetchInventory();
             })
+
+         */
     }
 
 
@@ -215,6 +244,17 @@ function App () {
                     console.log("error:", err);
                 });
         };
+    const addRowTable = () => {
+        const data = {
+            id: nanoid(),
+            product_name: "21",
+            product_category: "22",
+            unit_price: "11",
+        };
+        initRow([...rows, data]);
+        addInventory(data);
+        updateInventory(data);
+    };
 
 
     const openForm = (event) => {
@@ -230,6 +270,11 @@ function App () {
 
     return (
         <div className="container">
+
+            <button id="addReviewMobile" onClick={openForm} className="button mobileOnly">+</button>
+            <button id="addReview" onClick={openForm} className="button center hideOnMobile">Lisää arvostelu</button>
+
+
             <h1>Create Your Own Work Table</h1>
             <table>
                 <thead>
@@ -305,6 +350,12 @@ function App () {
                                             >
                                                 Delete
                                             </button>
+                                            <button
+                                                className={"btn-secondary"}
+                                                style={{marginLeft: 8}}
+                                                onClick={addRowTable}                                            >
+                                                Add
+                                            </button>
 
                                         </React.Fragment>
                                     ) : (
@@ -334,7 +385,9 @@ function App () {
 
             <h2>Add a row</h2>
             <button id="addReviewMobile" onClick={openForm} className="button mobileOnly">+</button>
+            <button id="addReview" onClick={openForm} className="button center hideOnMobile">Lisää arvostelu</button>
 
+            {/*
             <form onSubmit={handeAddFormSubmit}>
                 <input type="text" name="product_name"/>
                 <input type="text" name="product_category"/>
@@ -342,9 +395,9 @@ function App () {
                 <button type="submit" onSubmit={handeAddFormSubmit}>Add</button>
                 <button type="submit" onSubmit={onDelete}>Delete</button>
             </form>
+            */}
+
             <AddNewForm update={updatePage}/>
-
-
 
 
         </div>

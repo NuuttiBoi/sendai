@@ -85,6 +85,74 @@
   --clr-score: var(--clr-light);
 }
 
+.table-header {
+  background-color: var(--clr-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/*
+.resize-handle {
+  display: block;
+  position: absolute;
+  cursor: col-resize;
+  width: 7px;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  border-right: 2px solid transparent;
+}
+
+.resize-handle:hover {
+  border-color: #ccc;
+}
+
+.resize-handle.active {
+  border-color: #517ea5;
+}
+
+ */
+
+
+table {
+  border-collapse: collapse;
+
+}
+th,
+td {
+  border: 1px solid #1f1f1f;
+  text-align: left;
+  padding: 10px;
+  height: 100px;
+  font-size: 15px;
+  vertical-align: top;
+}
+
+
+th {
+  background-color: var(--clr-button-bg);
+  color: white;
+  border: 1px solid #1f1f1f;
+}
+
+td {
+  background-color: linen;
+}
+
+tr{
+  height: 250px;
+}
+.edit {
+  background-color: white;
+  border: var(--clr-bg);
+}
+
+
 .darkTheme .button {
   box-shadow: none;
 }
@@ -402,7 +470,7 @@ button {
 }
 
 /* Tekstibuttonit ja "buttonin" näköiset NavLinkit */
-.button {
+.button, .btn-secondary, .btn-primary, .btn-success {
   display: block;
   line-height: 0;
   font-weight: bold;
@@ -438,60 +506,6 @@ code {
   monospace;
 }
 
-/* Grid, jossa ravintolaboksit */
-.restaurantList {
-  display: grid;
-  gap: 2rem;
-  list-style-type: none;
-}
-
-/* Ravintolaboksi */
-.restaurantArticle {
-  padding: 1.5rem;
-  border-radius: var(--border-radius);
-  max-width: 30em;
-  margin: 0 auto;
-  box-shadow: 0 .5rem 1rem .1rem rgba(0 0 0 / .1);
-  min-height: 25rem;
-  display: grid;
-  grid-template-rows: auto auto 1fr auto auto;
-  gap: 1.25rem;
-}
-
-.restaurantArticle h2 {
-  margin-bottom: 0;
-}
-
-.address-box {
-  display: flex;
-  gap: .25em;
-  color: var(--clr-neutral);
-  min-height: 3rem;
-}
-
-.article-img {
-  display: block;
-  margin: 0 auto;
-  max-height: 16rem;
-}
-
-.article-img img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: var(--border-small);
-}
-
-/* Kartta-icon */
-.pin-icon {
-  min-width: 1.25em;
-  display: inline-block;
-  padding-top: .05em;
-  color: var(--clr-icon);
-}
-
-.pin-icon svg {
-  max-width: 100%;
-}
 
 .articleButton {
   width: 100%;
@@ -542,7 +556,7 @@ h2 {
 }
 
 /* Lomake mobiilissa */
-.addNewForm {
+.addNewForm, .editNewForm {
   height: 100vh;
   width: 100vw;
   border-radius: 0;
@@ -551,7 +565,7 @@ h2 {
   grid-auto-rows: auto auto 1fr auto;
 }
 
-.addNewForm form {
+.addNewForm form, .editNewForm form {
   display: grid;
   gap: 1rem;
 }
@@ -914,15 +928,6 @@ textarea:focus, input:focus {
   font-size: var(--text-extra-small);
 }
 
-/* Etusivun tagit */
-.tagContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  justify-content: center;
-  font-size: var(--text-small);
-}
-
 /* Arvostelusivujen tagit (ei klikattavia) */
 .unclickableTags {
   width: fit-content;
@@ -968,42 +973,6 @@ textarea:focus, input:focus {
   border-radius: var(--border-small);
   background-color: var(--clr-comment-bg);
   position: relative;
-}
-
-/* Arvosanaboksit */
-.scoresContainer {
-  display: grid;
-  background-color: var(--clr-primary-light);
-  gap: .75rem;
-  width: min(38em, 100%);
-  margin: 0 auto;
-  font-weight: 500;
-  padding: .5rem;
-  border-radius: var(--border-small);
-  --clr-score: var(--clr-primary);
-}
-
-.scoreBox {
-  border-radius: var(--border-radius);
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.15rem;
-  color: var(--clr-text);
-  /* background-color: var(--clr-primary-light);
-  border-radius: var(--border-radius);
-  padding: 1.25rem; */
-}
-
-.scoreBox > * {
-  display: inline-block;
-}
-
-.scoreNumber {
-  color: var(--clr-score);
-  font-weight: 600;
-  font-style: italic;
-  font-size: 1.7rem;
-  padding-right: .5rem;
 }
 
 /* Arviot articlessa etusivulla */
@@ -1089,6 +1058,14 @@ textarea:focus, input:focus {
 
 /* Pienemmillä näytöillä lomake täyttää koko sivun */
 @media only screen and (min-width: 32em) and (min-height: 42em) {
+
+  table{
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+
   .addNewForm {
     max-width: 30rem;
     max-height: 40em;
@@ -1121,7 +1098,7 @@ textarea:focus, input:focus {
 
   #addReview {
     grid-column: 4;
-    margin-right: 0;
+    margin-left: 0;
   }
 
   .title {
